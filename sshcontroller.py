@@ -15,7 +15,7 @@ last_file=''
 last_timestamp=''
 last_line=''
 
-path_config = '/script/config.ini' # INSERT THE CONFIGURATION FILE PATH
+path_config = '/sshcontroller/config.ini' # INSERT THE CONFIGURATION FILE PATH
 
 # ----------------------------------------------------------------------
 #       FUNCTIONS
