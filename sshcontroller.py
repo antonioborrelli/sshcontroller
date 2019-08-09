@@ -44,7 +44,7 @@ def readLast():
     last_timestamp = datetime.datetime.strptime(el_time, "%b %d %H:%M:%S")
 
 
-def send_email(oggetto,corpo):
+def send_email(obj,corpo):
     global path_config
     config = configparser.ConfigParser()
     config.read(path_config)
@@ -59,8 +59,8 @@ def send_email(oggetto,corpo):
 
     # Create message container - the correct MIME type is multipart/alternative.
     msg = MIMEMultipart('alternative')
-    oggetto = "[ " + NAME_SERVER + " ] " + oggetto
-    msg['Subject'] =oggetto
+    obj = "[ " + NAME_SERVER + " ] " + obj
+    msg['Subject'] =obj
     msg['From'] = SENDER
     msg['To'] = RECIPIENT
 
@@ -99,8 +99,8 @@ def main():
     # I read the variables from configuration files
     log_file    = config['FILE']['log_file']
     last_file   = config['FILE']['last_file']
-    time_start = '[ {:%Y-%m-%d %H:%M:%S} ] server avviato'.format(datetime.datetime.now())
-    obj='SSHCONTROL STARTED'
+    time_start = '[ {:%Y-%m-%d %H:%M:%S} ] Server started'.format(datetime.datetime.now())
+    obj='SSHCONTROLLER STARTED'
     msg= time_start
     send_email(obj,msg)
     readLast()
