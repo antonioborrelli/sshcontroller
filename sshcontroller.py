@@ -48,7 +48,8 @@ def send_email(obj,corpo):
     global path_config
     config = configparser.ConfigParser()
     config.read(path_config)
-    # Leggo le variabili dal file di configuazione
+    
+    # I read the variables from configuration files
     SMTP_HOST       = config['MAIL']['SMTP_HOST']
     SMTP_PORT       = config['MAIL']['SMTP_PORT']
     USER            = config['MAIL']['USER']
