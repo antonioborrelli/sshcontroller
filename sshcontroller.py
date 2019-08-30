@@ -57,12 +57,14 @@ def send_email(obj,corpo):
     RECIPIENT       = config['MAIL']['RECIPIENT']
     NAME_SERVER     = config['MAIL']['NAME_SERVER']
 
+    RECIPIENTS = RECIPIENT.split(',')
+
     # Create message container - the correct MIME type is multipart/alternative.
     msg = MIMEMultipart('alternative')
     obj = "[ " + NAME_SERVER + " ] " + obj
     msg['Subject'] =obj
     msg['From'] = SENDER
-    msg['To'] = RECIPIENT
+    msg['To'] = "<" + RECIPIENT.replace(",",">,<") + ">"
 
     # Create the body of the message (a plain-text and an HTML version).
     text = "[ " + NAME_SERVER + " ] \n" +corpo
@@ -85,7 +87,7 @@ def send_email(obj,corpo):
 
     # sendmail function takes 3 arguments: sender's address, recipient's address
     # and message to send - here it is sent as one string.
-    s.sendmail(SENDER, RECIPIENT, msg.as_string())
+    s.sendmail(SENDER, RECIPIENTS, msg.as_string())
     s.quit()
 
 def main():
@@ -127,3 +129,4 @@ while(True):
         main()
     except:
         time.sleep(60)
+
